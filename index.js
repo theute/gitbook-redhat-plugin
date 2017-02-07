@@ -3,11 +3,12 @@ module.exports = {
     hooks: {
          
 	"page:before": function(page) {
-        
+           // Replace {token} with {{token}}
            page.content = page.content.replace(/{[^{}]+}/g, function(key){
              return "{{book."+key.replace(/[{}]+/g, "")+"}}";
            });
-           console.log(page.content);
+           // Replace image::Image.png with image::images/Image.png
+           page.content = page.content.replace(/image::/g, "image::images/");
            return page;
         }
 
